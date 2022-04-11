@@ -5,7 +5,7 @@ import time
 from lxml import etree, html
 
 prc_password = "123456"  # prc密码
-rpc_url = "http://192.168.1.14:6800/jsonrpc"  # 改成自己的aria2 rpc链接
+rpc_url = "http://192.168.196.14:6800/jsonrpc"  # 改成自己的aria2 rpc链接
 dir = '/downloads'  # 下载地址，末尾不需要 /
 
 headers = {
@@ -25,7 +25,7 @@ def exec_rpc(magnet):
                 "bt-stop-timeout": str(60),
                 "max-concurrent-downloads": str(16),
                 "listen-port": "6881",
-                "dir": dir,
+                # "dir": dir,
             },
         ],
     }
@@ -54,7 +54,8 @@ def main():
     session = requests.Session()
     session.keep_alive = False  # 关闭多余连接
     # 倒序167页到1,如需正序换成 for i in range(1,168):
-    for i in range(168,0,-1):
+    # for i in range(168,0,-1):
+    for i in range(1, 2):
         print(i)
         url = "https://madouqu.com/page/"+ str(i)
         res = session.get(url=url, headers=headers).text
@@ -70,3 +71,5 @@ def main():
 # 开始执行主程序
 if __name__ == '__main__':
     main()
+
+# https://madou.club/

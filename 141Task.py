@@ -78,7 +78,7 @@ def main():
     #       time.strftime('%Y/%m/%d', time.localtime())
 
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36 Edg/86.0.622.56',
+        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36",
     }
 
     all_date_list = getAllDayPerYear("2021")
@@ -88,7 +88,7 @@ def main():
         if(diff>=0):
             url = "https://www.141jav.com/date/" + \
                   datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%Y/%m/%d')
-            res = requests.get(url=url, headers=headers, verify=False).text
+            res = requests.get(url=url, headers=headers, timeout=5, verify=False).text
             dateHtml = etree.HTML(res)
             magnets = dateHtml.xpath(
                 "//div[@class = 'card mb-3']//a[@title='Magnet torrent']/@href")
